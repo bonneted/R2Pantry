@@ -1,0 +1,120 @@
+/* Custom styles can go here */
+
+.btn {
+    width: 36px; /* Adjust width and height to make the button square */
+    height: 36px;
+    padding: 0;
+    font-size: 20px; /* Adjust font size as needed */
+    line-height: 36px; /* Align text vertically */
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+/* navbar */
+
+.navbar-logo {
+    width: 3.5rem; /* Adjust the width as needed to make the logo bigger */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid black; /* Add a black border */
+    border-radius: 10%; /* Round the corners to make it fully round */
+}
+
+.navbar-greeting {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 1000;
+    color: white;
+    /* font-weight: bold; */
+    font-size: 1.5rem;
+    display: block;
+    form select {
+        /* font-weight: bold; */
+        font-size: 1.3rem;
+    }
+}
+
+.navbar-greeting > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2rem;
+
+}
+
+
+.nav {
+    margin-top: 20px;
+    display: block;
+    align-content: center;
+    width: 100vw;
+}
+
+.nav a {
+    color: grey;
+    font-weight: bold;
+    transition: color 0.3s;
+    text-decoration: none; /* Remove text decoration */
+}
+
+.nav a:hover {
+    color: black;
+    background-color: yellow; /* Add fancy highlight effect */
+}
+    
+/* table */
+.pantry-items-table {
+
+    margin-bottom: 5rem;
+
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.modal-backdrop {
+    opacity: 0.5 !important; /* Adjust the opacity for the greyed-out background */
+}
+
+/* Nice and compact forms */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

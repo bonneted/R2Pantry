@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Pantry Items</h2>
+<table class="table pantry-items-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Total Consumption</th> <!-- New column for total consumption -->
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item, total_consumption in pantry_items %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ '%0.2f'|format(item.price) }} €</td>
+            <td>{{ total_consumption or '0' }}</td> <!-- Display total consumption -->
+
+            <td class="text-right">
+                <form action="{{ url_for('purchase_item', item_id=item.id) }}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-success btn-sm">+</button>
+                </form>
+                <form action="{{ url_for('delete_item', item_id=item.id) }}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">-</button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <form action="{{ url_for('home') }}" method="post">
+                {{ pantry_item_form.hidden_tag() }}
+                <td>{{ pantry_item_form.title(class_='form-control') }}</td>
+                <td>{{ pantry_item_form.price(class_='form-control') }}</td>
+                <td></td>''
+                <td class="text-right">{{ pantry_item_form.submit(class_='btn btn-primary btn-sm') }}</td>
+            </form>
+        </tr>
+    </tfoot>
+    </table>
+    {% if current_user.is_authenticated %}
+    <h2>Total Expenses for {{user_to_edit.username}}</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price per Item</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense.title }}</td>
+                    <td>{{ expense.quantity }}</td>
+                    <td>{{ '%0.2f'|format(expense.price_per_item) }} €</td>
+                    <td>{{ '%0.2f'|format(expense.total_price) }} €</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Total Expense</th>
+                <th>{{ '%0.2f'|format(total_expense) }} €</th>
+            </tr>
+        </tfoot>
+    </table>
+    {% endif %}
+{% endblock %}
